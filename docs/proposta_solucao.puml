@@ -1,0 +1,11 @@
+@startuml Diagrama de Estados
+    participant "Start It" as inicio
+    participant datachallenge as dc
+    participant "Site PGFN" as pgfn
+    participant "Amazon S3" as s3
+    inicio-->dc: atualizar PGFN
+    dc-->pgfn: get file
+    pgfn-->dc: file
+    dc->dc: check version
+    dc-->s3: file
+@enduml
