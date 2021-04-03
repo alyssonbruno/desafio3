@@ -3,6 +3,13 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="C:\Users\abrun\AppData\Roaming\JetBrains\PyCharm2020.3\scratches\scratch.sh">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Dockerfile">
           <value>
             <Attribute>
