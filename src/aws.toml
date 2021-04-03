@@ -1,0 +1,9 @@
+#format: https://toml.io/en/
+owner = "Alysson Bruno"
+
+[aws]
+region="sa-east-1"
+user="AKIAWCDAQWITPLYUVL4A"
+
+    [aws.s3]
+    bucket="dcstone"
