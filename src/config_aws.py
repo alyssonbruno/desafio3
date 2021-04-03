@@ -4,13 +4,11 @@ Configure aws
 from os import environ
 from pytomlpp import load
 from pathlib import Path
-from botocore.config import Config
 
 
-AWS_DIR_PATH = Path('/root/.aws')
-
-class ConfigExecption(Exception):
+class ConfigException(Exception):
     pass
+
 
 class TomlConfig:
     def __init__(self, file_name):
@@ -37,8 +35,9 @@ class S3Config:
             self.region = conf_file.aws['region']
             self.bucket_name = conf_file.aws['s3']['bucket']
             self.key = environ['AWS_S3_KEY']
-        except KeyError:
-            raise ConfigExecption('AWS configuration Error')
+        except KeyError as e:
+            print(e.args)
+            raise ConfigException('AWS configuration Error')
 
     def make_config(self) -> bool:
         self.__load_config_from_toml()
