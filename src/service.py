@@ -121,19 +121,15 @@ class PGFN(DataCrawlerInterface):
                 s3.upload_file(path=file_path, file_name=f)
         return 'done'
 
-
-# TODO: fazer o envio dos arquivos para o S3
-# TODO: fazer o clico para o bacen
-
 class Bacen(DataCrawlerInterface):
     def download(self) -> str:
-        return 'Done'
+        return 'Não Implementado'
 
     def unzip(self, cod: str) -> str:
-        return 'Done'
+        return 'Não Implementado'
 
     def prepare(self, cod: str) -> str:
-        return 'Done'
+        return 'Não Implementado'
 
     def send(self, cod: str) -> str:
-        return 'Done'
+        return 'Não Implementado'
