@@ -25,7 +25,8 @@ def create_table_files() -> None:
     with schema.create('files') as table:
         table.char('cod',36).unique()
         table.string('path',255)
-        table.string('url', 1024)
+        table.string('source', 1024)
+        table.string('kind', 30)
         table.datetime('created_at')
         table.datetime('updated_at')
         table.primary('cod')
@@ -40,9 +41,9 @@ class Files(Model):
         cria_schema()
 
     @staticmethod
-    def exists_file(url: str) -> str:
+    def exists_file(source: str) -> str:
         cria_schema()
-        files = db.table('files').where('url', url).get()
+        files = db.table('files').where('source', source).get()
         for f in files:
             p = Path(f['path'])
             if p.exists():
@@ -55,9 +56,27 @@ class Files(Model):
         path_to_file = db.table('files').where('cod', cod).first()['path']
         return path_to_file
 
+    @staticmethod
+    def get_path_from_kind(kind: str) -> str:
+        cria_schema()
+        path_to_file = db.table('files').where('kind', kind).first()['path']
+        return path_to_file
 
-    def new(self, path : str, url: Optional[str] = None) -> Model:
+    @staticmethod
+    def get_from_source(source: str, kind: Optional[str] = None) -> Optional[Model]:
+        cria_schema()
+        try:
+            if kind is not None:
+                path_to_file = db.table('files').where('source', source).where('kind',kind).first()
+            else:
+                path_to_file = db.table('files').where('source', source).first()
+        except TypeError:
+            return None
+        return path_to_file
+
+    def new(self, path : str, source: str, kind: Optional[str] = None) -> Model:
         self.cod = str(uuid4())
         self.path = path
-        self.url = url if url is not None else 'local'
+        self.source = source if source is not None else 'local'
+        self.kind = kind if kind is not None else 'file-downloaded'
         return self

@@ -1,13 +1,13 @@
 #!/bin/env python
 # descompacta arquivos
-from typing import Optional
+from typing import Optional, List
 from zipfile import ZipFile
 from shutil import copyfileobj
 from pathlib import Path
 
 DEFAULT_OUTPUT_DIR = '.'
 
-def unzip(file_name: str, out: Optional[str] = None) -> None:
+def unzip(file_name: str, out: Optional[str] = None) -> List[str]:
     """descompacta o arquivo passado como parâmetro.
     >>> unzip('Dados_abertos_Nao_Previdenciario.zip')
     ['arquivo_lai_SIDA_AC_202012.csv', 'arquivo_lai_SIDA_AL_202012.csv', 'arquivo_lai_SIDA_AM_202012.csv', 

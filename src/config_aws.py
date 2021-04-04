@@ -31,10 +31,10 @@ class S3Config:
     def __load_config_from_toml(self):
         conf_file = TomlConfig('aws.toml')
         try:
-            self.user = conf_file.aws['user']
+            self.user = conf_file.aws['user'] if 'AWS_ACCESS_KEY_ID' not in environ else environ['AWS_ACCESS_KEY_ID']
             self.region = conf_file.aws['region']
             self.bucket_name = conf_file.aws['s3']['bucket']
-            self.key = environ['AWS_S3_KEY']
+            self.key = conf_file.aws['key'] if 'AWS_SECRET_ACCESS_KEY' not in environ else environ['AWS_SECRET_ACCESS_KEY']
         except KeyError as e:
             print(e.args)
             raise ConfigException('AWS configuration Error')
