@@ -12,6 +12,7 @@ tipos = {
     'bacen': Bacen()
 }
 
+@app.route("/download/<string:tipo>", methods=['GET'])
 @app.route("/download/<string:tipo>/", methods=['GET'])
 def download_route(tipo : Optional[str] = None):
     if tipo in ('pgfn', 'bacen'):
@@ -20,6 +21,7 @@ def download_route(tipo : Optional[str] = None):
     else:
         return {'msg': 'erro in file tipy for download'}, 404
 
+@app.route("/prepare/<string:tipo>/<uuid:cod_file>", methods=['GET'])
 @app.route("/prepare/<string:tipo>/<uuid:cod_file>/", methods=['GET'])
 def prepare_route(tipo : Optional[str] = None, cod_file : Optional[str] = None):
     if tipo in ('pgfn', 'bacen'):
