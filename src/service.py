@@ -116,7 +116,9 @@ class PGFN(DataCrawlerInterface):
     def send(self, cod: str) -> str:
         s3 = S3Manager()
         if s3.connect():
-            pass
+            file_path = Files.get_path_from_cod(cod)
+            for f in listdir(file_path):
+                s3.upload_file(path=file_path, file_name=f)
         return 'done'
 
 

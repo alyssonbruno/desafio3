@@ -30,8 +30,8 @@ def prepare_route(tipo : Optional[str] = None, cod_file : Optional[str] = None):
     else:
         return {'msg': 'erro in file tipy for download'}, 404
 
-@app.route("/send/<string:tipo>/<uuid:cod_file>", methods=['GET'])
-@app.route("/send/<string:tipo>/<uuid:cod_file>/", methods=['GET'])
+@app.route("/send/<string:tipo>/<uuid:cod_prep>", methods=['GET'])
+@app.route("/send/<string:tipo>/<uuid:cod_prep>/", methods=['GET'])
 def send_route(tipo : Optional[str] = None, cod_prep : Optional[str] = None):
     if tipo in ('pgfn', 'bacen'):
         cod = tipos[tipo].send(str(cod_prep))

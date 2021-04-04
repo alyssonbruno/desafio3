@@ -1,4 +1,5 @@
 from typing import Optional
+from pathlib import Path
 
 import boto3
 
@@ -14,6 +15,7 @@ class S3Manager:
     def __init__(self, bucket_name : Optional[str] = None):
         self.__s3 = boto3.resource('s3')
         self.__bucket_name = bucket_name if bucket_name is not None else conf.bucket_name
+        self.bucket = None
 
     def __get_bucket(self) -> object:
         if self.bucket is None:
@@ -41,3 +43,7 @@ class S3Manager:
             else:
                 self.bucket = bucket
         return bucket.name == self.__bucket_name
+
+    def upload_file(self, path: str, file_name: str) -> bool:
+        self.__s3.Object(self.__bucket_name,file_name).upload_file(str(Path(path)/file_name))
+        return True
