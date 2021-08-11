@@ -1,5 +1,5 @@
 # Data Challenge Stone - Desafio #3
-Este repositório contém minha resposta ao desafio #3 da Data Challenge Stone - Área de Engenharia de Dados.
+Este repositório contém minha resposta (parcial) ao desafio #3 da Data Challenge Stone - Área de Engenharia de Dados. Resumidamente era fazer o crawler de uma página e salvar no S3.
 
 O nome do bucket utiliado deverá ser configurado no arquivo aws.toml (dentro do diretório src)
 
